@@ -50,16 +50,11 @@ cd "c:\Users\New User\Desktop\AI Claude Traffic"
 
 This command generates a publish-ready HTML blog post and saves it as a published `BlogPost` that appears automatically on the homepage.
 
-## Claude integration
+## Local generation
 
-The file `claude_integration.py` is a starter integration example for calling Claude via the Anthropic API.
+The file `claude_integration.py` now generates a publish-ready placeholder HTML page locally.
 
-Set your API key in an environment variable before running it:
-
-```powershell
-$env:ANTHROPIC_API_KEY = "your_api_key_here"
-python claude_integration.py
-```
+You do not need to set an API key or use an external Anthropic integration to run the `write-a-blog` command.
 
 ## Next steps
 
