@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-wx6m4sc*7)k0ha833=zzg6(#sb3)jl03$m$krxyc&g=io=gwff
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "aiwhizpro.com",
+    "www.aiwhizpro.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
