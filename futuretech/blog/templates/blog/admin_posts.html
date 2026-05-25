@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Admin - AI Claude Traffic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: #34495e;
+        }
+        .nav-links a.active {
+            background: #3498db;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .btn-danger {
+            background: #e74c3c;
+        }
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        .btn-secondary {
+            background: #95a5a6;
+        }
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        th {
+            background: #ecf0f1;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #bdc3c7;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .actions a,
+        .actions button {
+            padding: 6px 12px;
+            font-size: 0.9em;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .status.published {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.draft {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .empty-state {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .empty-state p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .btn-group {
+            margin-bottom: 20px;
+        }
+        .delete-form {
+            display: inline;
+        }
+        .delete-form button {
+            margin: 0;
+        }
+        .confirm-delete {
+            margin-top: 10px;
+            padding: 15px;
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+            display: none;
+        }
+        .confirm-delete.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Claude Traffic - Blog Admin</h1>
+            <div class="nav-links">
+                <a href="/">← Back to blog</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="btn-group">
+            <a href="{% url 'blog:admin_post_create' %}" class="btn">+ Create New Post</a>
+        </div>
+
+        <h2>All Blog Posts</h2>
+
+        {% if posts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Keyword</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td><strong>{{ post.title }}</strong></td>
+                    <td>{{ post.comparison_keyword }}</td>
+                    <td>
+                        <span class="status {% if post.published %}published{% else %}draft{% endif %}">
+                            {% if post.published %}Published{% else %}Draft{% endif %}
+                        </span>
+                    </td>
+                    <td>{{ post.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <div class="actions">
+                            <a href="{% url 'blog:admin_post_edit' post.id %}" class="btn btn-secondary">Edit</a>
+                            <form method="post" class="delete-form" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_id" value="{{ post.id }}">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this post? This cannot be undone.')">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <p>No blog posts yet. Create your first post to get started.</p>
+            <a href="{% url 'blog:admin_post_create' %}" class="btn">Create Your First Post</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
