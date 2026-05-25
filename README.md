@@ -41,6 +41,15 @@ Run the development server:
 python manage.py runserver
 ```
 
+Create a blog post directly from the command line without using a separate editor UI:
+
+```powershell
+cd "c:\Users\New User\Desktop\AI Claude Traffic"
+.\write-a-blog.ps1 "Cursor vs ChatGPT"
+```
+
+This command generates a publish-ready HTML blog post and saves it as a published `BlogPost` that appears automatically on the homepage.
+
 ## Claude integration
 
 The file `claude_integration.py` is a starter integration example for calling Claude via the Anthropic API.
