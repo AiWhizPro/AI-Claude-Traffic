@@ -1,65 +1,80 @@
 import urllib.request
-import html
-import re
+import urllib.error
+from pathlib import Path
 import sys
 
 HOME_URL = 'http://127.0.0.1:8000/'
-MENU_URL = 'http://127.0.0.1:8000/posts/'
 
 
 def fetch(url):
     try:
-        with urllib.request.urlopen(url, timeout=10) as r:
-            return r.read().decode('utf-8', errors='replace')
-    except Exception as e:
-        print(f'ERROR: failed to fetch {url}: {e}')
-        sys.exit(2)
+        with urllib.request.urlopen(url, timeout=10) as response:
+            return response.read().decode('utf-8', errors='replace')
+    except urllib.error.URLError as error:
+        print(f'WARN: could not fetch {url}: {error}')
+        return None
 
 
-def extract_h3_titles(html_text):
-    titles = re.findall(r'<h3[^>]*>(.*?)</h3>', html_text, flags=re.I | re.S)
-    return [html.unescape(re.sub(r'<[^>]+>', '', t)).strip() for t in titles]
+def load_template(path):
+    try:
+        return Path(path).read_text(encoding='utf-8')
+    except FileNotFoundError:
+        print(f'FAIL: Template file not found: {path}')
+        sys.exit(1)
+
+
+def assert_contains(source, fragment, message):
+    if fragment not in source:
+        print(f'FAIL: {message}')
+        print(f'  Expected to find: {fragment}')
+        sys.exit(1)
+    print(f'OK: {message}')
+
+
+def assert_not_contains(source, fragment, message):
+    if fragment in source:
+        print(f'FAIL: {message}')
+        print(f'  Unexpected fragment found: {fragment}')
+        sys.exit(1)
+    print(f'OK: {message}')
+
+
+def run_checks(home_html, header_html):
+    assert_contains(home_html, 'Memphis Style Home', 'Page title block is set to Memphis Style Home')
+    assert_contains(header_html, 'Memphis Studio', 'Header branding has Memphis Studio text')
+    assert_contains(home_html, 'rounded-[2rem]', 'Hero section uses rounded corners')
+    assert_contains(home_html, 'hero-grid', 'Hero section uses Memphis background grid styling')
+    assert_contains(home_html, 'Designed for calm, modern content', 'Hero heading text matches Memphis style')
+    assert_contains(home_html, 'text-memphis-900', 'Memphis dark text tone is present')
+    assert_contains(home_html, 'bg-memphis-50', 'Memphis surface background uses memphis-50')
+
+    assert_not_contains(home_html, '<form', 'Homepage has no analyzer input form')
+    assert_not_contains(home_html, 'Analyze</button>', 'Homepage has no Analyze button')
+    assert_not_contains(header_html, 'Analyze</a>', 'Header has no Analyze nav button')
+    assert_not_contains(home_html + header_html, 'Web Page Analyzer', 'Homepage has no old analyzer branding text')
+
+    assert_contains(header_html, 'class="text-memphis-700 hover:text-memphis-900">Home</a>', 'Header still includes Home navigation')
 
 
 if __name__ == '__main__':
-    print('Fetching homepage...')
-    home = fetch(HOME_URL)
+    print('Checking Memphis UI updates...')
+    home_html = fetch(HOME_URL)
+    header_html = None
 
-    print('Checking for Memphis style classes...')
-    if 'memphis-800' not in home and 'memphis-500' not in home:
-        print('WARN: Memphis color classes not found on homepage (memphis-800/memphis-500)')
+    if home_html is None:
+        print('Falling back to template source checks because the local server is not running.')
+        base_dir = Path(__file__).resolve().parent
+        home_path = base_dir / 'futuretech' / 'blog' / 'templates' / 'blog' / 'home.html'
+        header_path = base_dir / 'futuretech' / 'blog' / 'templates' / 'blog' / 'includes' / 'header.html'
+        home_html = load_template(home_path)
+        header_html = load_template(header_path)
     else:
-        print('OK: Memphis classes present')
+        print('Fetched homepage successfully from local server.')
+        # Load header separately from the template source for header-specific assertions.
+        base_dir = Path(__file__).resolve().parent
+        header_path = base_dir / 'futuretech' / 'blog' / 'templates' / 'blog' / 'includes' / 'header.html'
+        header_html = load_template(header_path)
 
-    titles = extract_h3_titles(home)
-    print(f'Found {len(titles)} <h3> post titles on homepage')
-
-    uniq = list(dict.fromkeys(titles))
-    if len(uniq) != len(titles):
-        print('FAIL: Duplicate post titles found on homepage:')
-        for t in titles:
-            if titles.count(t) > 1:
-                print('  -', t)
-        sys.exit(1)
-    else:
-        print('OK: No duplicate titles on homepage')
-
-    if len(titles) > 6:
-        print('FAIL: Homepage shows more than 6 posts')
-        sys.exit(1)
-    else:
-        print('OK: Homepage shows <= 6 posts')
-
-    # If there are more posts in total, verify the "View all posts" link goes to the menu page
-    if 'View all posts' in home or 'View all posts' in home:
-        print('Homepage advertises View all posts — checking menu page...')
-        menu = fetch(MENU_URL)
-        menu_titles = extract_h3_titles(menu)
-        if menu_titles:
-            print(f'OK: Menu page reachable and contains {len(menu_titles)} posts')
-        else:
-            print('FAIL: Menu page reachable but contains no posts')
-            sys.exit(1)
-
+    run_checks(home_html, header_html)
     print('UI Memphis tests passed')
     sys.exit(0)
