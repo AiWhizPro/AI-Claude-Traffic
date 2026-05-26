@@ -1,10 +1,11 @@
-Use the BlogSkill instructions defined in BlogSkill.md to create a full publish-ready HTML comparison page from a single keyword phrase in the form "[X] vs [Y]".
+Use the BlogSkill instructions defined in BlogSkill.md and the workflow rules in ai-tool-comparison-blog.md to create a full publish-ready HTML comparison page from a single keyword phrase in the form "[X] vs [Y]".
 
 Command name: write-a-blog
 Expected input: one comparison keyword phrase, for example "Cursor vs Copilot" or "AI design tool vs traditional design tool".
 
 Requirements:
 - Follow the exact page architecture and section rules from BlogSkill.md.
+- Follow the commands section and template workflow in ai-tool-comparison-blog.md.
 - Include full HTML output with <head>, schema JSON-LD, hero, TOC, quick verdict, Reddit-style community quotes, head-to-head table, pricing section, scenario cards, third-option CTA, FAQ, and footer.
 - Keep sentences short, active voice, specific claims, and honest verdicts as described in BlogSkill.md.
 - Do not add extra sections or remove mandatory sections.
