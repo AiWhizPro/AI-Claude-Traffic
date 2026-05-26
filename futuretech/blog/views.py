@@ -6,13 +6,36 @@ from .forms import BlogPostForm
 
 
 def home(request):
-    posts = BlogPost.objects.filter(published=True)
-    return render(request, 'blog/home.html', {'posts': posts})
+    qs = BlogPost.objects.filter(published=True).order_by('-created_at')
+    # Deduplicate by slug while preserving order to avoid duplicate cards
+    seen = set()
+    unique_posts = []
+    for p in qs:
+        if p.slug in seen:
+            continue
+        seen.add(p.slug)
+        unique_posts.append(p)
+
+    total = len(unique_posts)
+    limit = 6
+    posts = unique_posts[:limit]
+    more_available = total > limit
+    return render(request, 'blog/home.html', {
+        'posts': posts,
+        'total_posts': total,
+        'more_available': more_available,
+    })
 
 
 def post_detail(request, slug):
     post = get_object_or_404(BlogPost, slug=slug, published=True)
     return render(request, 'blog/post_detail.html', {'post': post})
+
+
+def posts_menu(request):
+    """Menu page listing all published posts (paginated simple view)."""
+    posts = BlogPost.objects.filter(published=True).order_by('-created_at')
+    return render(request, 'blog/menu.html', {'posts': posts})
 
 
 @require_http_methods(["GET", "POST"])

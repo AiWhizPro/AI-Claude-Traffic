@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}All Posts — AI Claude Traffic{% endblock %}
+
+{% block content %}
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-extrabold text-memphis-800 mb-4">All Posts</h1>
+    <p class="text-memphis-600 mb-8">A complete list of published comparison articles.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {% for post in posts %}
+      <article class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-memphis-800">{{ post.title }}</h3>
+          <p class="text-sm text-memphis-600 mt-2">{{ post.comparison_keyword }}</p>
+          <p class="mt-4 text-sm text-memphis-500">Published: {{ post.created_at|date:"M d, Y" }}</p>
+          <a href="{% url 'blog:post_detail' post.slug %}" class="mt-4 inline-block text-memphis-500 font-semibold">Read →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href="{% url 'blog:home' %}" class="text-memphis-700 hover:text-memphis-900">Back to Home</a>
+    </div>
+  </section>
+{% endblock %}
