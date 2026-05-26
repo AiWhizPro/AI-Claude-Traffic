@@ -6,7 +6,8 @@ A small Django-based project scaffold with a custom `.claude` command definition
 
 - `futuretech/` — Django project skeleton
 - `.claude/Commands/write-a-blog` — custom command metadata for the `write-a-blog` action
-- `BlogSkill.md` — instructions for building publish-ready comparison articles
+- `futuretech/blog/management/skills/BlogSkill.md` — instructions for building publish-ready comparison articles
+- `futuretech/blog/management/skills/ai-tool-comparison-blog.md` — command workflow guidance for AI tool comparison pages
 - `test_ai_claude_traffic.py` — basic project sanity check script
 - `claude_integration.py` — starter Claude integration helper
 

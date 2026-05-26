@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}AI Claude Traffic{% endblock %}</title>
+    <meta name="description" content="Honest AI tool comparisons for developers." />
+
+    <script>
+      tailwind = window.tailwind || {};
+    </script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'memphis-50': '#f6fbfb',
+              'memphis-100': '#eef7f6',
+              'memphis-200': '#dff0ef',
+              'memphis-500': '#0aa98f',
+              'memphis-600': '#088f75',
+              'memphis-700': '#066b55',
+              'memphis-800': '#05483b',
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      /* Small helper to keep content readable */
+      .content-max { max-width: 90rem; }
+    </style>
+
+    {% block head %}{% endblock %}
+  </head>
+  <body class="bg-memphis-50 text-memphis-800 antialiased">
+    {% include 'blog/includes/header.html' %}
+
+    <main class="content-max mx-auto px-4 py-8">
+      {% block content %}{% endblock %}
+    </main>
+
+    {% include 'blog/includes/footer.html' %}
+  </body>
+</html>

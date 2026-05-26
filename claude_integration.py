@@ -215,42 +215,42 @@ def _build_html(x: str, y: str, title: str, slug: str, display_date: str, pricin
           </tr>
           <tr>
             <td>Response speed</td>
-            <td class="win">✓ Faster answers in the browser workflow.</td>
+            <td class="win">Winner: faster answers in the browser workflow.</td>
             <td class="lose">Slower to settle in, but more thoughtful on longer prompts.</td>
           </tr>
           <tr>
             <td>Long-context handling</td>
             <td class="lose">Good for quick follow-ups, weaker as conversations lengthen.</td>
-            <td class="win">✓ Better at keeping multi-step intent across a session.</td>
+            <td class="win">Winner: better at keeping multi-step intent across a session.</td>
           </tr>
           <tr>
             <td>Safety and guardrails</td>
             <td class="lose">More likely to return a confident answer that needs fact-checking.</td>
-            <td class="win">✓ Prioritizes safer, less hallucinated output.</td>
+            <td class="win">Winner: prioritizes safer, less hallucinated output.</td>
           </tr>
           <tr>
             <td>Knowledge access</td>
-            <td class="win">✓ Stronger search and Google-connected facts.</td>
+            <td class="win">Winner: stronger search and Google-connected facts.</td>
             <td class="lose">Mostly relies on Claude's own trained model and recent internal updates.</td>
           </tr>
           <tr>
             <td>Multimodal support</td>
-            <td class="win">✓ Built to handle images and browser-style prompts naturally.</td>
+            <td class="win">Winner: built to handle images and browser-style prompts naturally.</td>
             <td class="lose">Works well, but the experience is more focused on text and long context.</td>
           </tr>
           <tr>
             <td>Team alignment</td>
             <td class="lose">A good fit for Google Workspace teams, but team pricing is not transparent.</td>
-            <td class="win">✓ Better documented for enterprise workflows and safe review cycles.</td>
+            <td class="win">Winner: better documented for enterprise workflows and safe review cycles.</td>
           </tr>
           <tr>
             <td>Code editing</td>
             <td class="lose">Useful for quick code snippets.</td>
-            <td class="win">✓ Stronger when you need follow-up edits across multiple files.</td>
+            <td class="win">Winner: stronger when you need follow-up edits across multiple files.</td>
           </tr>
           <tr>
             <td>Day-one usability</td>
-            <td class="win">✓ Easier to jump into with a simpler prompt flow.</td>
+            <td class="win">Winner: easier to jump into with a simpler prompt flow.</td>
             <td class="lose">Takes a little more setup time, but pays off later in complex workflows.</td>
           </tr>
         </table>
@@ -320,7 +320,7 @@ def _build_html(x: str, y: str, title: str, slug: str, display_date: str, pricin
         <div><strong>Weekly verdict for AI workflows</strong></div>
         <p>Join 4,200+ developers who get one clear recommendation each week on the exact AI tool worth using for code, docs, and design.</p>
         <input class="cta-input" type="email" placeholder="Enter your email" />
-        <button class="cta-button">Get the Weekly Verdict →</button>
+        <button class="cta-button">Get the Weekly Verdict -></button>
       </div>
     </section>
 

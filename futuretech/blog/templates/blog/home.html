@@ -1,127 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Claude Traffic - Blog</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            color: white;
-            margin-bottom: 60px;
-        }
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .post-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        .post-card-content {
-            padding: 25px;
-        }
-        .post-card h3 {
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 1.4em;
-        }
-        .post-keyword {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-bottom: 15px;
-        }
-        .post-date {
-            color: #999;
-            font-size: 0.9em;
-            margin-top: 15px;
-        }
-        .post-card a {
-            display: block;
-            margin-top: 15px;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .post-card a:hover {
-            color: #764ba2;
-        }
-        .empty-state {
-            text-align: center;
-            color: white;
-            padding: 60px 20px;
-        }
-        .empty-state h2 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>AI Claude Traffic</h1>
-            <p>Comparison articles powered by AI</p>
-        </header>
+{% extends 'blog/base.html' %}
 
-        {% if posts %}
-        <div class="posts-grid">
-            {% for post in posts %}
-            <div class="post-card">
-                <div class="post-card-content">
-                    <h3>{{ post.title }}</h3>
-                    <span class="post-keyword">{{ post.comparison_keyword }}</span>
-                    <p class="post-date">Published: {{ post.created_at|date:"M d, Y" }}</p>
-                    <a href="{% url 'blog:post_detail' post.slug %}">Read Full Article →</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="empty-state">
-            <h2>No posts yet</h2>
-            <p>Blog posts will appear here when you run the write-a-blog command.</p>
-            <p>There is no separate post creation page — generated posts are published directly to the homepage.</p>
-        </div>
-        {% endif %}
-    </div>
-</body>
-</html>
+{% block title %}AI Claude Traffic — Home{% endblock %}
+
+{% block content %}
+  <div class="text-center bg-gradient-to-r from-memphis-200 to-memphis-50 rounded-xl p-8 mb-8">
+    <h1 class="text-3xl font-extrabold">AI Claude Traffic</h1>
+    <p class="text-memphis-700 mt-2">Comparison articles powered by AI — honest, specific, and readable.</p>
+  </div>
+
+  <section class="text-center py-12">
+    <h2 class="text-4xl font-extrabold text-memphis-800">AI Claude Traffic</h2>
+    <p class="mt-3 text-memphis-600">Comparison articles generated from live community signals and pricing checks.</p>
+  </section>
+
+  {% if posts %}
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for post in posts %}
+    <article class="bg-white rounded-xl shadow-md overflow-hidden">
+      <div class="p-6">
+        <h3 class="text-lg font-semibold text-memphis-800">{{ post.title }}</h3>
+        <span class="inline-block mt-2 bg-memphis-100 text-memphis-700 px-3 py-1 rounded-full text-sm">{{ post.comparison_keyword }}</span>
+        <p class="mt-4 text-sm text-memphis-600">Published: {{ post.created_at|date:"M d, Y" }}</p>
+        <a href="{% url 'blog:post_detail' post.slug %}" class="mt-4 inline-block text-memphis-500 font-semibold">Read Full Article →</a>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+  {% else %}
+  <section class="text-center py-20">
+    <h2 class="text-2xl font-semibold text-memphis-800">No posts yet</h2>
+    <p class="mt-4 text-memphis-600">Run the write-a-blog command to generate the first comparison article.</p>
+  </section>
+  {% endif %}
+{% endblock %}

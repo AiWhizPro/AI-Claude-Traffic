@@ -44,7 +44,8 @@ class Command(BaseCommand):
         title = f'{comparison_keyword} — Honest Comparison'
 
         prompt = (
-            'Use the BlogSkill instructions from BlogSkill.md and the workflow rules in ai-tool-comparison-blog.md to create a complete, publish-ready HTML '
+            'Use the BlogSkill instructions from BlogSkill.md (see futuretech/blog/management/skills/BlogSkill.md) and the workflow rules from ai-tool-comparison-blog.md '
+            '(see futuretech/blog/management/skills/ai-tool-comparison-blog.md) to create a complete, publish-ready HTML '
             'comparison article for the keyword "' + comparison_keyword + '". '
             'Follow the commands section in ai-tool-comparison-blog.md and output a full HTML page only, including <head>, schema JSON-LD, hero, TOC, quick verdict, '
             'Reddit-style community quotes, head-to-head table, pricing section, scenario cards, third-option CTA, FAQ, and footer. '
