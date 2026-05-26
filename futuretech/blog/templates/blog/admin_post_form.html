@@ -4,153 +4,196 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - Blog Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        :root {
+            --color-primary: #e8879f;
+            --color-secondary: #4db8a8;
+            --color-accent: #f5d76e;
+            --color-background: #faf8f5;
+            --color-surface: #fffef7;
+            --color-text: #1a1a2e;
+            --radius: 12px;
+            --border-width: 3px;
+            --shadow-offset: 4px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
             line-height: 1.6;
         }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
+
         header {
-            background: #2c3e50;
-            color: white;
+            background: var(--color-surface);
+            color: var(--color-text);
             padding: 20px 0;
             margin-bottom: 30px;
+            border-bottom: var(--border-width) solid rgba(26, 26, 46, 0.08);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(26, 26, 46, 0.12);
         }
+
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
+
         h1 {
             font-size: 1.8em;
-            font-weight: 600;
+            font-weight: 700;
         }
+
         .nav-links a {
-            color: white;
+            color: var(--color-text);
             text-decoration: none;
             padding: 8px 12px;
-            border-radius: 4px;
-            transition: background 0.3s;
+            border-radius: var(--radius);
+            border: var(--border-width) solid rgba(26, 26, 46, 0.08);
+            transition: background 0.3s ease, color 0.3s ease;
         }
+
         .nav-links a:hover {
-            background: #34495e;
+            background: var(--color-secondary);
+            color: white;
         }
+
         h2 {
             font-size: 1.5em;
             margin-bottom: 25px;
-            color: #2c3e50;
+            color: var(--color-text);
         }
+
         .form-group {
             margin-bottom: 25px;
         }
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--color-text);
         }
+
         .form-input,
         .form-textarea,
         select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #bdc3c7;
-            border-radius: 4px;
+            padding: 14px;
+            border: var(--border-width) solid rgba(26, 26, 46, 0.08);
+            border-radius: var(--radius);
             font-size: 1em;
             font-family: inherit;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--color-surface);
+            color: var(--color-text);
         }
+
         .form-input:focus,
         .form-textarea:focus,
         select:focus {
             outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 8px rgba(77, 184, 168, 0.12);
         }
+
         .form-textarea {
             resize: vertical;
             min-height: 400px;
-            font-family: 'Monaco', 'Courier New', monospace;
             font-size: 0.95em;
         }
+
         .form-checkbox {
             width: auto;
             margin-right: 10px;
             cursor: pointer;
         }
+
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .help-text {
-            color: #7f8c8d;
+            color: #6c5b4e;
             font-size: 0.9em;
             margin-top: 5px;
         }
+
         .error {
-            color: #e74c3c;
+            color: #c0392b;
             font-size: 0.9em;
             margin-top: 5px;
         }
+
         .errorlist {
             list-style: none;
-            color: #e74c3c;
+            color: #c0392b;
             margin-bottom: 20px;
             padding: 10px;
-            background: #fadbd8;
-            border-left: 4px solid #e74c3c;
-            border-radius: 4px;
+            background: #fbecea;
+            border-left: 4px solid #c0392b;
+            border-radius: var(--radius);
         }
+
         .form-actions {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #ecf0f1;
+            border-top: var(--border-width) solid rgba(26, 26, 46, 0.08);
         }
+
         .btn {
             padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: var(--radius);
             font-size: 1em;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
             text-decoration: none;
             display: inline-block;
+            background: var(--color-primary);
+            color: white;
         }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(26, 26, 46, 0.12);
+        }
+
         .btn-primary {
-            background: #3498db;
-            color: white;
+            background: var(--color-primary);
         }
-        .btn-primary:hover {
-            background: #2980b9;
-        }
+
         .btn-secondary {
-            background: #95a5a6;
+            background: var(--color-secondary);
             color: white;
         }
-        .btn-secondary:hover {
-            background: #7f8c8d;
-        }
+
         .info-box {
-            background: #d1ecf1;
-            border-left: 4px solid #0c5460;
-            padding: 15px;
-            border-radius: 4px;
+            background: rgba(232, 135, 159, 0.12);
+            border-radius: var(--radius);
+            padding: 20px;
             margin-bottom: 20px;
-            color: #0c5460;
+            color: var(--color-text);
+            border: var(--border-width) solid rgba(232, 135, 159, 0.24);
         }
     </style>
 </head>

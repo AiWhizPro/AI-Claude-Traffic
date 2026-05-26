@@ -6,6 +6,8 @@
     <title>{% block title %}AI Claude Traffic{% endblock %}</title>
     <meta name="description" content="Honest AI tool comparisons for developers." />
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
     <script>
       tailwind = window.tailwind || {};
     </script>
@@ -13,14 +15,23 @@
       tailwind.config = {
         theme: {
           extend: {
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
             colors: {
-              'memphis-50': '#f6fbfb',
-              'memphis-100': '#eef7f6',
-              'memphis-200': '#dff0ef',
-              'memphis-500': '#0aa98f',
-              'memphis-600': '#088f75',
-              'memphis-700': '#066b55',
-              'memphis-800': '#05483b',
+              primary: '#e8879f',
+              secondary: '#4db8a8',
+              accent: '#f5d76e',
+              background: '#faf8f5',
+              surface: '#fffef7',
+              text: '#1a1a2e',
+              'memphis-50': '#faf8f5',
+              'memphis-100': '#fffef7',
+              'memphis-200': '#f5d76e',
+              'memphis-500': '#e8879f',
+              'memphis-600': '#4db8a8',
+              'memphis-700': '#1a1a2e',
+              'memphis-800': '#1a1a2e',
             }
           }
         }
@@ -29,8 +40,125 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-      /* Small helper to keep content readable */
-      .content-max { max-width: 90rem; }
+      :root {
+        --color-primary: #e8879f;
+        --color-secondary: #4db8a8;
+        --color-accent: #f5d76e;
+        --color-background: #faf8f5;
+        --color-surface: #fffef7;
+        --color-text: #1a1a2e;
+        --radius: 12px;
+        --border-width: 3px;
+        --shadow-offset: 4px 4px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: var(--color-background);
+        color: var(--color-text);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      a {
+        color: var(--color-secondary);
+      }
+
+      a:hover {
+        color: var(--color-primary);
+      }
+
+      .content-max {
+        max-width: 90rem;
+      }
+
+      .bg-white,
+      .bg-memphis-50,
+      .bg-memphis-100,
+      .bg-memphis-200,
+      .bg-memphis-500,
+      .bg-memphis-600,
+      .bg-memphis-700,
+      .bg-memphis-800 {
+        background-color: var(--color-surface) !important;
+      }
+
+      .text-memphis-600 {
+        color: var(--color-secondary) !important;
+      }
+
+      .text-memphis-700,
+      .text-memphis-800 {
+        color: var(--color-text) !important;
+      }
+
+      .text-memphis-500 {
+        color: var(--color-primary) !important;
+      }
+
+      .border-memphis-100 {
+        border-color: rgba(26, 26, 46, 0.08) !important;
+      }
+
+      .border-memphis-200 {
+        border-color: var(--color-accent) !important;
+      }
+
+      .border-memphis-500 {
+        border-color: var(--color-primary) !important;
+      }
+
+      .border-memphis-600 {
+        border-color: var(--color-secondary) !important;
+      }
+
+      .border-memphis-700,
+      .border-memphis-800 {
+        border-color: var(--color-text) !important;
+      }
+
+      .bg-gradient-to-r {
+        background-image: linear-gradient(90deg, rgba(232, 135, 159, 0.18), rgba(77, 184, 168, 0.18)) !important;
+      }
+
+      .shadow,
+      .shadow-sm,
+      .shadow-md,
+      .shadow-lg {
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(26, 26, 46, 0.12) !important;
+      }
+
+      .rounded-xl,
+      .rounded-lg,
+      .rounded-md,
+      .rounded-full,
+      .rounded-[1.5rem],
+      .rounded-[2rem] {
+        border-radius: var(--radius) !important;
+      }
+
+      .border,
+      .border-t,
+      .border-b,
+      .border-l,
+      .border-r {
+        border-width: var(--border-width) !important;
+      }
+
+      .hero-card,
+      .card,
+      .surface-card {
+        background: var(--color-surface);
+        border: var(--border-width) solid rgba(26, 26, 46, 0.08);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(26, 26, 46, 0.12);
+      }
     </style>
 
     {% block head %}{% endblock %}
