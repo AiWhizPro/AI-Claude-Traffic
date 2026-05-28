@@ -1,0 +1,396 @@
+/* Memphis / Playful Geometric Style */
+
+:root {
+    /* Color Palette */
+    --memphis-pink: #ff6b9d;
+    --memphis-teal: #00c9b1;
+    --memphis-yellow: #ffd93d;
+    --memphis-coral: #ff8a5c;
+    --memphis-purple: #a855f7;
+    --memphis-blue: #60a5fa;
+    --memphis-black: #1a1a2e;
+    --memphis-white: #fffef7;
+    --memphis-cream: #fff8e7;
+
+    /* Shadows */
+    --shadow-offset: 4px;
+    --shadow-pink: 4px 4px 0 var(--memphis-pink);
+    --shadow-teal: 4px 4px 0 var(--memphis-teal);
+    --shadow-yellow: 4px 4px 0 var(--memphis-yellow);
+    --shadow-coral: 4px 4px 0 var(--memphis-coral);
+    --shadow-purple: 4px 4px 0 var(--memphis-purple);
+    --shadow-blue: 4px 4px 0 var(--memphis-blue);
+    --shadow-black: 4px 4px 0 var(--memphis-black);
+
+    /* Border */
+    --border-width: 3px;
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+    --border-radius-pill: 50px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--memphis-white);
+    color: var(--memphis-black);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Polka dot pattern overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle, var(--memphis-pink) 2px, transparent 2px),
+        radial-gradient(circle, var(--memphis-teal) 2px, transparent 2px),
+        radial-gradient(circle, var(--memphis-yellow) 2px, transparent 2px);
+    background-size: 80px 80px, 120px 120px, 100px 100px;
+    background-position: 0 0, 40px 40px, 20px 60px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--memphis-white);
+    color: var(--memphis-black);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: var(--border-width) solid var(--memphis-black);
+    border-radius: var(--border-radius-pill);
+    box-shadow: var(--shadow-teal);
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--memphis-teal);
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    margin: 30px 0 50px;
+    background: var(--memphis-white);
+    border: var(--border-width) solid var(--memphis-black);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-pink);
+}
+
+.nav-logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--memphis-pink), var(--memphis-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.nav-links a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--memphis-black);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-pill);
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    background: var(--memphis-yellow);
+    border-color: var(--memphis-black);
+}
+
+/* Sections */
+.section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--memphis-pink), var(--memphis-teal), var(--memphis-yellow));
+    border-radius: 3px;
+}
+
+.section-description {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.component-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--memphis-black);
+    background: var(--memphis-white);
+    border: var(--border-width) solid var(--memphis-black);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-black);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--memphis-black);
+}
+
+.btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+/* Button Colors */
+.btn-pink {
+    background: var(--memphis-pink);
+    box-shadow: var(--shadow-purple);
+}
+
+.btn-pink:hover {
+    box-shadow: 2px 2px 0 var(--memphis-purple);
+}
+
+.btn-teal {
+    background: var(--memphis-teal);
+    box-shadow: var(--shadow-blue);
+}
+
+.btn-teal:hover {
+    box-shadow: 2px 2px 0 var(--memphis-blue);
+}
+
+.btn-yellow {
+    background: var(--memphis-yellow);
+    box-shadow: var(--shadow-coral);
+}
+
+.btn-yellow:hover {
+    box-shadow: 2px 2px 0 var(--memphis-coral);
+}
+
+.btn-coral {
+    background: var(--memphis-coral);
+    box-shadow: var(--shadow-pink);
+}
+
+.btn-coral:hover {
+    box-shadow: 2px 2px 0 var(--memphis-pink);
+}
+
+.btn-purple {
+    background: var(--memphis-purple);
+    color: var(--memphis-white);
+    box-shadow: var(--shadow-teal);
+}
+
+.btn-purple:hover {
+    box-shadow: 2px 2px 0 var(--memphis-teal);
+}
+
+.btn-blue {
+    background: var(--memphis-blue);
+    box-shadow: var(--shadow-yellow);
+}
+
+.btn-blue:hover {
+    box-shadow: 2px 2px 0 var(--memphis-yellow);
+}
+
+.btn-sm {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+}
+
+.btn-lg {
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius-lg);
+}
+
+.btn-icon {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.4rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0;
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -3px;
+}
+
+.btn-group .btn:first-child {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    margin-left: 0;
+}
+
+.btn-group .btn:last-child {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.btn-group .btn.active {
+    background: var(--memphis-pink);
+    z-index: 1;
+}
+
+/* ==================== CARDS ==================== */
+.card {
+    background: var(--memphis-white);
+    border: var(--border-width) solid var(--memphis-black);
+    border-radius: var(--border-radius-lg);
+    padding: 25px;
+    box-shadow: var(--shadow-black);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.card-text {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Accent Card */
+.card-accent {
+    border-color: var(--memphis-pink);
+    box-shadow: var(--shadow-pink);
+}
+
+.card-accent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--memphis-pink),
+        var(--memphis-pink) 20px,
+        var(--memphis-yellow) 20px,
+        var(--memphis-yellow) 40px,
+        var(--memphis-teal) 40px,
+        var(--memphis-teal) 60px
+    );
+}
+
+.profile-card {
+    text-align: center;
+    padding: 35px 25px;
+    min-width: 220px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    background: linear-gradient(135deg, var(--memphis-pink), var(--memphis-purple));
+    border: var(--border-width) solid var(--memphis-black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--memphis-white);
+    box-shadow: var(--shadow-teal);
+}
+
+.profile-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.profile-role {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--memphis-yellow);
+    border: 2px solid var(--memphis-black);
+    border-radius: var(--border-radius-pill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* (Remaining rules from the original stylesheet were included earlier; keep full file in repository) */

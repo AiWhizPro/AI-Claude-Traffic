@@ -7,12 +7,12 @@
     <meta name="description" content="Honest AI tool comparisons for developers." />
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blog/memphis/styles.css' %}">
 
     <script>
-      tailwind = window.tailwind || {};
-    </script>
-    <script>
-      tailwind.config = {
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
@@ -35,16 +35,16 @@
             }
           }
         }
-      }
+      };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
       :root {
-        --color-primary: #e8879f;
-        --color-secondary: #4db8a8;
-        --color-accent: #f5d76e;
-        --color-background: #faf8f5;
+        --color-primary: #ff6b9d;
+        --color-secondary: #00c9b1;
+        --color-accent: #ffd93d;
+        --color-background: #fffef7;
         --color-surface: #fffef7;
         --color-text: #1a1a2e;
         --radius: 12px;
