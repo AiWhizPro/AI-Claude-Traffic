@@ -1,30 +1,98 @@
 {% extends 'blog/base.html' %}
-
-{% block title %}aiwhizpro — Home{% endblock %}
+{% load static %}
 
 {% block content %}
-  {% if posts %}
-  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {% for post in posts %}
-    <article class="bg-white rounded-xl shadow-md overflow-hidden">
-      <div class="p-6">
-        <h3 class="text-lg font-semibold text-memphis-800">{{ post.title }}</h3>
-        <span class="inline-block mt-2 bg-memphis-100 text-memphis-700 px-3 py-1 rounded-full text-sm">{{ post.comparison_keyword }}</span>
-        <p class="mt-4 text-sm text-memphis-600">Published: {{ post.created_at|date:"M d, Y" }}</p>
-        <a href="{% url 'blog:post_detail' post.slug %}" class="mt-4 inline-block text-memphis-500 font-semibold">Read Full Article →</a>
-      </div>
-    </article>
-    {% endfor %}
-  </section>
-  {% if more_available %}
-  <div class="mt-8 text-center">
-    <a href="{% url 'blog:menu' %}" class="inline-block px-4 py-2 bg-memphis-500 text-white rounded-md font-semibold">View all posts</a>
-  </div>
-  {% endif %}
-  {% else %}
-  <section class="text-center py-20">
-    <h2 class="text-2xl font-semibold text-memphis-800">No posts yet</h2>
-    <p class="mt-4 text-memphis-600">Run the write-a-blog command to generate the first comparison article.</p>
-  </section>
-  {% endif %}
+<div class="container">
+    <nav class="nav">
+        <div class="nav-logo">AI CLAUDE TRAFFIC</div>
+        <ul class="nav-links">
+            <li><a href="#metrics">Metrics</a></li>
+            <li><a href="#controls">Controls</a></li>
+            <li><a href="#progress">Server Load</a></li>
+        </ul>
+    </nav>
+
+    <section id="metrics" class="section">
+        <h2 class="section-title">Traffic Metrics</h2>
+        <p class="section-description">Real-time AI traffic analysis via Memphis geometric interfaces.</p>
+
+        <div class="component-grid">
+            <div class="card card-accent" style="max-width: 320px; width: 100%;">
+                <h3 class="card-title">Daily Requests</h3>
+                <div class="stat-value" style="font-size: 2.5rem; color: var(--memphis-purple); font-weight: 800; margin-bottom: 10px;">12.4K</div>
+                <p class="card-text">Total API calls processed today across the network.</p>
+                <button class="btn btn-teal btn-sm">View Logs</button>
+            </div>
+
+            <div class="card" style="max-width: 320px; width: 100%;">
+                <h3 class="card-title">Avg Latency</h3>
+                <div class="stat-value" style="font-size: 2.5rem; color: var(--memphis-pink); font-weight: 800; margin-bottom: 10px;">240ms</div>
+                <p class="card-text">Average response time across all active endpoints.</p>
+                <button class="btn btn-yellow btn-sm">Optimize</button>
+            </div>
+            
+            <div class="card pricing-card featured" style="max-width: 320px; width: 100%;">
+                <span class="pricing-badge">Active</span>
+                <h3 class="card-title">Pro Tier</h3>
+                <div class="pricing-content">
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">Unlimited Requests</li>
+                        <li class="pricing-feature">Priority Processing</li>
+                        <li class="pricing-feature">Analytics Dashboard</li>
+                    </ul>
+                    <button class="btn btn-purple" style="width: 100%;">Manage Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="controls" class="section">
+        <h2 class="section-title">System Controls</h2>
+        
+        <div class="component-grid mb-30">
+            <div class="toggle-wrapper">
+                <input type="checkbox" class="toggle" id="toggle-routing" checked>
+                <label class="toggle-label" for="toggle-routing">Smart Routing</label>
+            </div>
+            <div class="toggle-wrapper">
+                <input type="checkbox" class="toggle" id="toggle-cache">
+                <label class="toggle-label" for="toggle-cache">Aggressive Caching</label>
+            </div>
+        </div>
+
+        <div class="component-grid">
+            <div class="search-wrapper">
+                <span class="search-icon">&#128269;</span>
+                <input type="search" class="search-input" placeholder="Search traffic logs...">
+            </div>
+            <button class="btn btn-coral">Search</button>
+        </div>
+    </section>
+
+    <section id="progress" class="section">
+        <h2 class="section-title">Server Load</h2>
+        
+        <div class="component-grid mb-30">
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Cluster A (US-East)</span>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill pink" style="width: 75%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Cluster B (EU-West)</span>
+                    <span>40%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill teal" style="width: 40%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}

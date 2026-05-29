@@ -1,175 +1,33 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}AI Claude Traffic{% endblock %}</title>
-    <meta name="description" content="Honest AI tool comparisons for developers." />
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Claude Traffic - Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{% static 'blog/memphis/styles.css' %}">
+</head>
+<body>
+    {% if messages %}
+        <div class="container mb-20" style="padding-bottom: 0;">
+            {% for message in messages %}
+            <div class="card card-accent" style="padding: 15px; margin-bottom: 10px;">
+                <p style="margin: 0; font-weight: 600;">{{ message }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
-    <script>
-      window.tailwind = window.tailwind || {};
-      window.tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Poppins', 'sans-serif'],
-            },
-            colors: {
-              primary: '#e8879f',
-              secondary: '#4db8a8',
-              accent: '#f5d76e',
-              background: '#faf8f5',
-              surface: '#fffef7',
-              text: '#1a1a2e',
-              'memphis-50': '#faf8f5',
-              'memphis-100': '#fffef7',
-              'memphis-200': '#f5d76e',
-              'memphis-500': '#e8879f',
-              'memphis-600': '#4db8a8',
-              'memphis-700': '#1a1a2e',
-              'memphis-800': '#1a1a2e',
-            }
-          }
-        }
-      };
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-      :root {
-        --color-primary: #ff6b9d;
-        --color-secondary: #00c9b1;
-        --color-accent: #ffd93d;
-        --color-background: #fffef7;
-        --color-surface: #fffef7;
-        --color-text: #1a1a2e;
-        --radius: 12px;
-        --border-width: 3px;
-        --shadow-offset: 4px 4px;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: 'Poppins', sans-serif;
-        background: var(--color-background);
-        color: var(--color-text);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      a {
-        color: var(--color-secondary);
-      }
-
-      a:hover {
-        color: var(--color-primary);
-      }
-
-      .content-max {
-        max-width: 90rem;
-      }
-
-      .bg-white,
-      .bg-memphis-50,
-      .bg-memphis-100,
-      .bg-memphis-200,
-      .bg-memphis-500,
-      .bg-memphis-600,
-      .bg-memphis-700,
-      .bg-memphis-800 {
-        background-color: var(--color-surface) !important;
-      }
-
-      .text-memphis-600 {
-        color: var(--color-secondary) !important;
-      }
-
-      .text-memphis-700,
-      .text-memphis-800 {
-        color: var(--color-text) !important;
-      }
-
-      .text-memphis-500 {
-        color: var(--color-primary) !important;
-      }
-
-      .border-memphis-100 {
-        border-color: rgba(26, 26, 46, 0.08) !important;
-      }
-
-      .border-memphis-200 {
-        border-color: var(--color-accent) !important;
-      }
-
-      .border-memphis-500 {
-        border-color: var(--color-primary) !important;
-      }
-
-      .border-memphis-600 {
-        border-color: var(--color-secondary) !important;
-      }
-
-      .border-memphis-700,
-      .border-memphis-800 {
-        border-color: var(--color-text) !important;
-      }
-
-      .bg-gradient-to-r {
-        background-image: linear-gradient(90deg, rgba(232, 135, 159, 0.18), rgba(77, 184, 168, 0.18)) !important;
-      }
-
-      .shadow,
-      .shadow-sm,
-      .shadow-md,
-      .shadow-lg {
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(26, 26, 46, 0.12) !important;
-      }
-
-      .rounded-xl,
-      .rounded-lg,
-      .rounded-md,
-      .rounded-full,
-      .rounded-[1.5rem],
-      .rounded-[2rem] {
-        border-radius: var(--radius) !important;
-      }
-
-      .border,
-      .border-t,
-      .border-b,
-      .border-l,
-      .border-r {
-        border-width: var(--border-width) !important;
-      }
-
-      .hero-card,
-      .card,
-      .surface-card {
-        background: var(--color-surface);
-        border: var(--border-width) solid rgba(26, 26, 46, 0.08);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgba(26, 26, 46, 0.12);
-      }
-    </style>
-
-    {% block head %}{% endblock %}
-  </head>
-  <body class="bg-memphis-50 text-memphis-800 antialiased">
-    {% include 'blog/includes/header.html' %}
-
-    <main class="content-max mx-auto px-4 py-8">
-      {% block content %}{% endblock %}
+    <main>
+        {% block content %}
+        {% endblock content %}
     </main>
 
-    {% include 'blog/includes/footer.html' %}
-  </body>
+    <footer style="text-align: center; padding: 40px; margin-top: 40px; border-top: 3px dashed var(--memphis-black);">
+        <p style="font-weight: 600;">&copy; {% now "Y" %} AI Claude Traffic. All rights reserved.</p>
+    </footer>
+</body>
 </html>
